@@ -24,14 +24,14 @@ export default function DropDown() {
   };
 
   return (
-    <div>
+    <nav>
       <Button
         id='basic-button'
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
         onClick={openDashboard}
-        data-testid='hamburgerBtn'
+        data-testid='dropdown-btn'
       >
         <img src={svg.dashSvg} className='w-9' />
       </Button>
@@ -41,6 +41,7 @@ export default function DropDown() {
         open={open}
         onClose={closeDashboard}
         slotProps={{}}
+        data-testid='dropdown-menu'
       >
         <MenuItem
           onClick={() => {
@@ -76,6 +77,6 @@ export default function DropDown() {
           <p className='text-l'>Basket</p>
         </MenuItem>
       </Menu>
-    </div>
+    </nav>
   );
 }

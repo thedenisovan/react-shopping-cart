@@ -21,7 +21,11 @@ export default function Header() {
         BRAND
       </h1>
       {/* Group basket icon */}
-      <IconButton aria-label='delete' className='mr-5!' data-testid='basketBtn'>
+      <IconButton
+        aria-label='delete'
+        className='mr-5!'
+        data-testid='basket-button'
+      >
         <ShoppingCartIcon />
         <CartBadge badgeContent={0} color='primary' overlap='circular' />
       </IconButton>
