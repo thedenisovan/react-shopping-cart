@@ -7,6 +7,8 @@ import svg from '../../utils/svgRepo';
 export default function DropDown() {
   // State to close/open dashboard
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  // State to indicate current active page in dropdown component
+  const [currentPage, setCurrentPage] = React.useState<string>('home');
   const open = Boolean(anchorEl);
 
   const openDashboard = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -17,9 +19,9 @@ export default function DropDown() {
     setAnchorEl(null);
   };
 
-  //   const underlineCurrPage = () = {
-
-  //   }
+  const changeCurrentActivePage = (activePage: string) => {
+    setCurrentPage(activePage);
+  };
 
   return (
     <div>
@@ -38,27 +40,38 @@ export default function DropDown() {
         anchorEl={anchorEl}
         open={open}
         onClose={closeDashboard}
-        slotProps={{
-          list: {
-            'aria-labelledby': 'basic-button',
-          },
-        }}
+        slotProps={{}}
       >
         <MenuItem
-          onClick={closeDashboard}
-          className='w-[100px]! text-gray-800! font-medium!'
+          onClick={() => {
+            changeCurrentActivePage('home');
+            closeDashboard();
+          }}
+          className={`w-[100px]! text-gray-800! font-medium! ${
+            currentPage === 'home' && 'bg-gray-200!' // Sets curr active page style to home page
+          }`}
         >
           <p className='text-l'>Home</p>
         </MenuItem>
         <MenuItem
-          onClick={closeDashboard}
-          className='w-[100px]! text-gray-800! font-medium!'
+          onClick={() => {
+            changeCurrentActivePage('shop');
+            closeDashboard();
+          }}
+          className={`w-[100px]! text-gray-800! font-medium! ${
+            currentPage === 'shop' && 'bg-gray-200!' // Sets curr active page style to home page
+          }`}
         >
           <p className='text-l'>Shop</p>
         </MenuItem>
         <MenuItem
-          onClick={closeDashboard}
-          className='w-[100px]! text-gray-800! font-medium!'
+          onClick={() => {
+            changeCurrentActivePage('basket');
+            closeDashboard();
+          }}
+          className={`w-[100px]! text-gray-800! font-medium! ${
+            currentPage === 'basket' && 'bg-gray-200!' // Sets curr active page style to home page
+          }`}
         >
           <p className='text-l'>Basket</p>
         </MenuItem>

@@ -23,7 +23,7 @@ export default function Header() {
       {/* Group basket icon */}
       <IconButton aria-label='delete' className='mr-5!' data-testid='basketBtn'>
         <ShoppingCartIcon />
-        <CartBadge badgeContent={1} color='primary' overlap='circular' />
+        <CartBadge badgeContent={0} color='primary' overlap='circular' />
       </IconButton>
     </header>
   );
