@@ -14,10 +14,10 @@ const CartBadge = styled(Badge)`
 
 export default function Header() {
   return (
-    <header className='flex items-center justify-between h-[5vh]'>
+    <header className='flex items-center justify-between h-[5vh] mb-1'>
       {/* Group for side bar dropdown menu button*/}
       <DropDown></DropDown>
-      <h1 className='text-3xl font-bold tracking-widest text-gray-800'>
+      <h1 className='text-3xl font-bold tracking-widest text-gray-800 mb-0'>
         BRAND
       </h1>
       {/* Group basket icon */}
