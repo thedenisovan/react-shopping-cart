@@ -2,18 +2,18 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import dashBtn from '../../assets/dashBtn.svg';
+import svg from '../../utils/svgRepo';
 
 export default function DropDown() {
   // State to close/open dashboard
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const openDashboard = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const closeDashboard = () => {
     setAnchorEl(null);
   };
 
@@ -28,24 +28,40 @@ export default function DropDown() {
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
+        onClick={openDashboard}
+        data-testid='hamburgerBtn'
       >
-        <img src={dashBtn} className='w-9' />
+        <img src={svg.dashSvg} className='w-9' />
       </Button>
       <Menu
         id='basic-menu'
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={closeDashboard}
         slotProps={{
           list: {
             'aria-labelledby': 'basic-button',
           },
         }}
       >
-        <MenuItem onClick={handleClose}>Home</MenuItem>
-        <MenuItem onClick={handleClose}>Shop</MenuItem>
-        <MenuItem onClick={handleClose}>Basket</MenuItem>
+        <MenuItem
+          onClick={closeDashboard}
+          className='w-[100px]! text-gray-800! font-medium!'
+        >
+          <p className='text-l'>Home</p>
+        </MenuItem>
+        <MenuItem
+          onClick={closeDashboard}
+          className='w-[100px]! text-gray-800! font-medium!'
+        >
+          <p className='text-l'>Shop</p>
+        </MenuItem>
+        <MenuItem
+          onClick={closeDashboard}
+          className='w-[100px]! text-gray-800! font-medium!'
+        >
+          <p className='text-l'>Basket</p>
+        </MenuItem>
       </Menu>
     </div>
   );
