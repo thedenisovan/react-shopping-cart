@@ -5,13 +5,10 @@ import { render, screen } from '@testing-library/react';
 import App from '../src/components/App';
 
 describe('tests for elements being in docs', () => {
-  it('h1 should be in document', () => {
+  it('header component should be in document', () => {
     render(<App />);
-    screen.debug();
 
-    const heading = screen.getByRole('heading');
-
-    // Check if element is in the document
-    expect(heading).toBeInTheDocument();
+    // Check if header component is in the document
+    expect(screen.getByRole('banner')).toBeInTheDocument();
   });
 });

@@ -4,8 +4,8 @@ import carouselImg from '../../../utils/carouselImg';
 
 export default function CarouselComp() {
   return (
-    <Carousel>
-      <Carousel.Item interval={3000}>
+    <Carousel data-testid='carousel-container'>
+      <Carousel.Item interval={3000} data-testid='first-slide'>
         <img
           className='d-block w-100 h-[400px] object-cover'
           src={carouselImg.imageOne}
@@ -16,7 +16,7 @@ export default function CarouselComp() {
           <p>Browse luxury accessories for all occasions.</p>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item interval={3000}>
+      <Carousel.Item interval={3000} data-testid='second-slide'>
         <img
           className='d-block w-100 h-[400px] object-cover'
           src={carouselImg.imageTwo}
@@ -31,7 +31,7 @@ export default function CarouselComp() {
           </p>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item interval={3000}>
+      <Carousel.Item interval={3000} data-testid='third-slide'>
         <img
           className='d-block w-100 h-[400px] object-cover'
           src={carouselImg.imageThree}
