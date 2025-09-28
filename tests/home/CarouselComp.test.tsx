@@ -19,7 +19,7 @@ describe('carousel component', () => {
     expect(screen.getByTestId('third-slide')).not.toHaveClass('active');
   });
 
-  it('second and second slide should be active after 3s', async () => {
+  it('slides should change after 3s', async () => {
     vi.useFakeTimers();
     render(<CarouselComp />);
 
