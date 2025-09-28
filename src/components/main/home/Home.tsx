@@ -3,7 +3,7 @@ import Offers from './Offers';
 
 export default function Home() {
   return (
-    <main className='h-[100]'>
+    <main>
       <CarouselComp></CarouselComp>
       <Offers />
     </main>

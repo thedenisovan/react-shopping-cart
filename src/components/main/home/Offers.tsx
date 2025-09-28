@@ -1,10 +1,10 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import useProductData from '../../ProductApi';
+import ProductCard from '../ProductCard';
 
+// responsive breakpoint settings for react multi carousel
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 5,
   },
@@ -24,21 +24,15 @@ const responsive = {
 
 export default function Offers() {
   return (
-    <Carousel responsive={responsive}>
-      <SlideContainer />
-    </Carousel>
-  );
-}
-
-const SlideContainer = () => {
-  const { product, error, loading } = useProductData();
-
-  if (error) return <p>A network error was encountered</p>;
-  if (loading) return <p>Loading...</p>;
-
-  return (
     <div>
-      <h3>{product[5].title}</h3>
+      <h3 className='text-center'>Special offers</h3>
+      <Carousel responsive={responsive} infinite={true}>
+        <ProductCard productId={1} />
+        <ProductCard productId={2} />
+        <ProductCard productId={3} />
+        <ProductCard productId={4} />
+        <ProductCard productId={15} />
+      </Carousel>
     </div>
   );
-};
+}
