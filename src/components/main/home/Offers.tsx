@@ -24,14 +24,14 @@ const responsive = {
 
 export default function Offers() {
   return (
-    <div>
-      <h3 className='text-center'>Special offers</h3>
+    <div className='bg-gray-100'>
+      <h2 className='text-center mt-2'>SPECIAL OFFERS</h2>
       <Carousel responsive={responsive} infinite={true}>
-        <ProductCard productId={1} />
+        <ProductCard productId={5} />
+        <ProductCard productId={18} />
         <ProductCard productId={2} />
-        <ProductCard productId={3} />
-        <ProductCard productId={4} />
-        <ProductCard productId={15} />
+        <ProductCard productId={7} />
+        <ProductCard productId={6} />
       </Carousel>
     </div>
   );

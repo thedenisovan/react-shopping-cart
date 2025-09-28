@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import useProductData from '../ProductApi';
+import useProductData from './ProductApi';
 
 const ProductCard = ({ productId }: { productId: number }) => {
   const { product, error, loading } = useProductData();
@@ -14,7 +14,7 @@ const ProductCard = ({ productId }: { productId: number }) => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <Card sx={{ maxWidth: 345 }} className='m-auto h-[500px]'>
+    <Card sx={{ maxWidth: 345 }} className='m-auto h-[480px] mb-3'>
       <CardMedia
         component='img'
         alt={product[productId].title}
@@ -30,8 +30,9 @@ const ProductCard = ({ productId }: { productId: number }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size='small'>Share</Button>
-        <Button size='small'>Learn More</Button>
+        <Button size='medium' variant='contained'>
+          View
+        </Button>
       </CardActions>
     </Card>
   );
