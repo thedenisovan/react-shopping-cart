@@ -70,17 +70,19 @@ export default function DropDown() {
             <p className='text-black'>Shop</p>
           </MenuItem>
         </Link>
-        <MenuItem
-          onClick={() => {
-            changeCurrentActivePage('basket');
-            closeDashboard();
-          }}
-          className={`w-[100px]! text-gray-800! font-medium! ${
-            currentPage === 'basket' && 'bg-gray-200!' // Sets curr active page style to home page
-          }`}
-        >
-          <p className='text-l'>Basket</p>
-        </MenuItem>
+        <Link to='basket' className='!no-underline'>
+          <MenuItem
+            onClick={() => {
+              changeCurrentActivePage('basket');
+              closeDashboard();
+            }}
+            className={`w-[100px]! text-gray-800! font-medium! ${
+              currentPage === 'basket' && 'bg-gray-200!' // Sets curr active page style to home page
+            }`}
+          >
+            <p className='text-black'>Basket</p>
+          </MenuItem>
+        </Link>
       </Menu>
     </nav>
   );
