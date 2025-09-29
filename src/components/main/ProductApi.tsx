@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-// Type to store fake shop call data
+// Interface to store fake shop call data
 interface ProductType {
   category: string;
   description: string;
@@ -14,7 +14,7 @@ interface ProductType {
   title: string;
 }
 
-// Custom hook to fetch data from fake shop
+// Custom hook to fetch data from fake shop api
 const useProductData = () => {
   const [product, setProduct] = useState<ProductType[]>([]);
   const [error, setError] = useState(null);

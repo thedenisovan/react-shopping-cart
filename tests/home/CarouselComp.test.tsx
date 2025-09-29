@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom/vitest';
 import { vi, describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import CarouselComp from '../../src/components/main/home/CarouselComp';
@@ -19,11 +20,11 @@ describe('carousel component', () => {
     expect(screen.getByTestId('third-slide')).not.toHaveClass('active');
   });
 
-  it('slides should change after 3s', async () => {
+  it('slides should change after 5s', async () => {
     vi.useFakeTimers();
     render(<CarouselComp />);
 
-    vi.advanceTimersByTime(3000);
+    vi.advanceTimersByTime(5000);
 
     await vi.waitFor(() => {
       expect(screen.getByTestId('second-slide')).toHaveClass('active');

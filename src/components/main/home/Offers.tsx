@@ -8,11 +8,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 export default function Offers() {
   const { product, error, loading } = useProductData();
 
+  console.log(product);
+
   const offerProducts = [
     product[2],
     product[3],
     product[6],
-    product[7],
+    product[17],
     product[18],
   ];
 

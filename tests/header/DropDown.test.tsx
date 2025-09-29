@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom/vitest';
 import { describe, it, expect } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router';
 
 import DropDown from '../../src/components/header/DropDown';
 
@@ -19,7 +20,11 @@ describe('header dropdown menu', () => {
   });
 
   it('dropdown menu should be in document after click event', () => {
-    render(<DropDown />);
+    render(
+      <BrowserRouter>
+        <DropDown />
+      </BrowserRouter>
+    );
 
     const dropdownButton = screen.getByTestId('dropdown-btn');
 
