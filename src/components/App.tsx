@@ -12,17 +12,21 @@ export default function App() {
     <div className='flex flex-col min-h-screen'>
       <Header />
       <Home />
-      <Footer container>
+      <Footer container className='bg-gray-200 rounded-0'>
         <FooterCopyright href='#' by='BRAND™' year={2025} />
         <FooterLinkGroup>
-          <FooterLink href='https://github.com/thedenisovan'>GitHub</FooterLink>
+          <FooterLink href='https://github.com/thedenisovan'>
+            <p className='text-white! text-[1rem] border-b-2  m-0'>GitHub</p>
+          </FooterLink>
           <FooterLink href='https://www.linkedin.com/in/dainis-dilevka-961a332b4/'>
-            LinkedIn
+            <p className='text-white! text-[1rem] border-b-2  m-0'>LinkedIn</p>
           </FooterLink>
           <FooterLink href='https://github.com/thedenisovan/react-shopping-cart'>
-            Project
+            <p className='text-white! text-[1rem] border-b-2  m-0'>Project</p>
           </FooterLink>
-          <FooterLink href='#'>Contact</FooterLink>
+          <FooterLink href='#'>
+            <p className='text-white! text-[1rem] border-b-2  m-0'>Header</p>
+          </FooterLink>
         </FooterLinkGroup>
       </Footer>
     </div>

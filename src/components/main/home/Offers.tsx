@@ -1,6 +1,9 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ProductCard from '../ProductCard';
+import useProductData from '../ProductApi';
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // responsive breakpoint settings for react multi carousel
 const responsive = {
@@ -27,15 +30,32 @@ const responsive = {
 };
 
 export default function Offers() {
+  const { product, error, loading } = useProductData();
+  const offerProducts = [
+    product[6],
+    product[7],
+    product[2],
+    product[3],
+    product[18],
+  ];
+
+  if (error) return <p>A network error was encountered</p>;
+
   return (
     <div className='bg-gray-100 flex-1'>
-      <Carousel responsive={responsive} infinite={true}>
-        <ProductCard productId={5} />
-        <ProductCard productId={18} />
-        <ProductCard productId={2} />
-        <ProductCard productId={1} />
-        <ProductCard productId={6} />
-      </Carousel>
+      {loading ? (
+        <div className='h-100 flex justify-center items-center'>
+          <Stack spacing={2} direction='row' alignItems='center'>
+            <CircularProgress size='10rem' color='inherit' />
+          </Stack>
+        </div>
+      ) : (
+        <Carousel responsive={responsive} infinite={true}>
+          {offerProducts.map((prod) => (
+            <ProductCard key={prod.id} product={prod} />
+          ))}
+        </Carousel>
+      )}
     </div>
   );
 }
