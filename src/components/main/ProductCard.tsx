@@ -6,7 +6,20 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 
-const ProductCard = ({ product }) => {
+interface Product {
+  title: string;
+  image: string;
+  price: number;
+  rating: {
+    rate: number;
+  };
+}
+
+interface ProductCardProps {
+  product: Product;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <Card
       // sx={{ maxWidth: 345 }}

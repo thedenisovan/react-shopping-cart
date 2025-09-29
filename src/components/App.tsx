@@ -1,32 +1,38 @@
 import Header from './header/Header';
-import Home from './main/home/Home';
-import {
-  Footer,
-  FooterCopyright,
-  FooterLink,
-  FooterLinkGroup,
-} from 'flowbite-react';
+import { Outlet } from 'react-router';
+import { Footer, FooterCopyright, FooterLinkGroup } from 'flowbite-react';
 
 export default function App() {
   return (
     <div className='flex flex-col min-h-screen'>
       <Header />
-      <Home />
+      <Outlet />
       <Footer container className='bg-gray-200 rounded-0'>
         <FooterCopyright href='#' by='BRAND™' year={2025} />
         <FooterLinkGroup>
-          <FooterLink href='https://github.com/thedenisovan'>
-            <p className='text-white! text-[1rem] border-b-2  m-0'>GitHub</p>
-          </FooterLink>
-          <FooterLink href='https://www.linkedin.com/in/dainis-dilevka-961a332b4/'>
-            <p className='text-white! text-[1rem] border-b-2  m-0'>LinkedIn</p>
-          </FooterLink>
-          <FooterLink href='https://github.com/thedenisovan/react-shopping-cart'>
-            <p className='text-white! text-[1rem] border-b-2  m-0'>Project</p>
-          </FooterLink>
-          <FooterLink href='#'>
-            <p className='text-white! text-[1rem] border-b-2  m-0'>Header</p>
-          </FooterLink>
+          <div className='flex gap-3'>
+            <a
+              href='https://github.com/thedenisovan'
+              className='text-[1rem] text-white hover:underline'
+            >
+              GitHub
+            </a>
+            <a
+              href='https://www.linkedin.com/in/dainis-dilevka-961a332b4/'
+              className='text-[1rem] text-white hover:underline'
+            >
+              LinkedIn
+            </a>
+            <a
+              href='https://github.com/thedenisovan/react-shopping-cart'
+              className='text-[1rem] text-white hover:underline'
+            >
+              Project
+            </a>
+            <a href='#' className='text-[1rem] text-white hover:underline'>
+              Header
+            </a>
+          </div>
         </FooterLinkGroup>
       </Footer>
     </div>

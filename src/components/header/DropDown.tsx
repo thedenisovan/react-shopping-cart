@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import svg from '../../utils/svgRepo';
+import { Link } from 'react-router';
 
 export default function DropDown() {
   // State to close/open dashboard
@@ -43,28 +44,32 @@ export default function DropDown() {
         slotProps={{}}
         data-testid='dropdown-menu'
       >
-        <MenuItem
-          onClick={() => {
-            changeCurrentActivePage('home');
-            closeDashboard();
-          }}
-          className={`w-[100px]! text-gray-800! font-medium! ${
-            currentPage === 'home' && 'bg-gray-200!' // Sets curr active page style to home page
-          }`}
-        >
-          <p className='text-l'>Home</p>
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            changeCurrentActivePage('shop');
-            closeDashboard();
-          }}
-          className={`w-[100px]! text-gray-800! font-medium! ${
-            currentPage === 'shop' && 'bg-gray-200!' // Sets curr active page style to home page
-          }`}
-        >
-          <p className='text-l'>Shop</p>
-        </MenuItem>
+        <Link to='/' className='!no-underline'>
+          <MenuItem
+            onClick={() => {
+              changeCurrentActivePage('home');
+              closeDashboard();
+            }}
+            className={`w-[100px]! text-gray-800! font-medium! ${
+              currentPage === 'home' && 'bg-gray-200!' // Sets curr active page style to home page
+            }`}
+          >
+            <p className='text-black'>Home</p>
+          </MenuItem>
+        </Link>
+        <Link to='shop' className='!no-underline'>
+          <MenuItem
+            onClick={() => {
+              changeCurrentActivePage('shop');
+              closeDashboard();
+            }}
+            className={`w-[100px]! text-gray-800! font-medium! ${
+              currentPage === 'shop' && 'bg-gray-200!' // Sets curr active page style to home page
+            }`}
+          >
+            <p className='text-black'>Shop</p>
+          </MenuItem>
+        </Link>
         <MenuItem
           onClick={() => {
             changeCurrentActivePage('basket');
