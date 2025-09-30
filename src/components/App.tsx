@@ -15,10 +15,8 @@ export default function App() {
     setProducts(product);
   }, [product]);
 
+  // iterates trough products state and updates given product with matching id
   const updateQuantity = (id: number, amount: number) => {
-    const prod = products.find((p) => p.id === id);
-    if (!prod) return null;
-
     setProducts((prev) =>
       prev.map((p) =>
         p.id === id ? { ...p, quantity: p.quantity + amount } : p

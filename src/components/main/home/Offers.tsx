@@ -27,8 +27,9 @@ const responsive = {
 
 export default function Offers({ type }: { type: string }) {
   const [currProduct, setCurrProduct] = useState<ProductType[]>([]);
-  const { updateQuantity } = useOutletContext<{
+  const { updateQuantity, deleteFromBasket } = useOutletContext<{
     updateQuantity: (id: number, amount: number) => void;
+    deleteFromBasket: (id: number) => void;
   }>();
   const {
     manProducts,
@@ -74,6 +75,7 @@ export default function Offers({ type }: { type: string }) {
             updateQuantity={updateQuantity}
             key={prod.id}
             product={prod}
+            deleteFromBasket={deleteFromBasket}
           />
         ))}
       </Carousel>
