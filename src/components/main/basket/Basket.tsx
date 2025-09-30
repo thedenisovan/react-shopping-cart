@@ -3,14 +3,22 @@ import { useOutletContext } from 'react-router';
 import type { ProductType } from '../ProductApi';
 
 export default function Basket() {
-  const { product } = useOutletContext<{
-    product: ProductType[];
+  const { products, updateQuantity } = useOutletContext<{
+    products: ProductType[];
+    updateQuantity: (id: number, amount: number) => void;
   }>();
+  const addedProducts = products.filter((prod) => prod.quantity > 0);
 
   return (
     <div className='flex flex-col flex-1 text-center justify-center'>
-      <h1>This is Basket</h1>
-      <p>Welcome friend</p>
+      {addedProducts.map((prod) => (
+        <ProductCard
+          updateQuantity={updateQuantity}
+          product={prod}
+          key={prod.id}
+          isBasket={true}
+        />
+      ))}
     </div>
   );
 }

@@ -27,6 +27,9 @@ const responsive = {
 
 export default function Offers({ type }: { type: string }) {
   const [currProduct, setCurrProduct] = useState<ProductType[]>([]);
+  const { updateQuantity } = useOutletContext<{
+    updateQuantity: (id: number, amount: number) => void;
+  }>();
   const {
     manProducts,
     womanProducts,
@@ -67,7 +70,11 @@ export default function Offers({ type }: { type: string }) {
     <div className='bg-gray-100 flex-1'>
       <Carousel responsive={responsive} infinite={true}>
         {currProduct.map((prod) => (
-          <ProductCard key={prod.id} product={prod} />
+          <ProductCard
+            updateQuantity={updateQuantity}
+            key={prod.id}
+            product={prod}
+          />
         ))}
       </Carousel>
     </div>
@@ -81,41 +88,41 @@ const useProductCategory = () => {
   const [jewelry, setJewelry] = useState<ProductType[]>([]);
   const [electronicProducts, setElectronic] = useState<ProductType[]>([]);
   const [specOffers, setSpecOffers] = useState<ProductType[]>([]);
-  const { product } = useOutletContext<{
-    product: ProductType[];
+  const { products } = useOutletContext<{
+    products: ProductType[];
   }>();
 
   // sets different product based on category
   // when products gets fetched from api
   useEffect(() => {
     const getManClothing = () => {
-      const manClothing = product.filter(
+      const manClothing = products.filter(
         (prod) => prod.category === "men's clothing"
       );
       setManProducts(manClothing);
     };
 
     const getWomansClothing = () => {
-      const womansClothing = product.filter(
+      const womansClothing = products.filter(
         (prod) => prod.category === "women's clothing"
       );
       setWomanProducts(womansClothing);
     };
 
     const getJewelry = () => {
-      const jewelry = product.filter((prod) => prod.category === 'jewelery');
+      const jewelry = products.filter((prod) => prod.category === 'jewelery');
       setJewelry(jewelry);
     };
 
     const getElectronics = () => {
-      const electronics = product.filter(
+      const electronics = products.filter(
         (prod) => prod.category === 'electronics'
       );
       setElectronic(electronics);
     };
 
     const getSpecOffer = () => {
-      const offers = product.filter(
+      const offers = products.filter(
         (prod) =>
           prod.id === 1 ||
           prod.id === 2 ||
@@ -131,7 +138,7 @@ const useProductCategory = () => {
     getElectronics();
     getWomansClothing();
     getSpecOffer();
-  }, [product]);
+  }, [products]);
 
   return {
     manProducts,

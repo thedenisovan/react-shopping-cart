@@ -4,17 +4,33 @@ import { Footer, FooterCopyright, FooterLinkGroup } from 'flowbite-react';
 import useProductData from './main/ProductApi';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useEffect, useState } from 'react';
+import type { ProductType } from './main/ProductApi';
 
 export default function App() {
   const { product, loading, error } = useProductData();
+  const [products, setProducts] = useState<ProductType[]>([]);
 
-  product.forEach((prod) => (prod.quantity = 0));
+  useEffect(() => {
+    setProducts(product);
+  }, [product]);
+
+  const updateQuantity = (id: number, amount: number) => {
+    const prod = products.find((p) => p.id === id);
+    if (!prod) return null;
+
+    setProducts((prev) =>
+      prev.map((p) =>
+        p.id === id ? { ...p, quantity: p.quantity + amount } : p
+      )
+    );
+  };
 
   if (error) throw new Error('Error durning fetch api');
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <Header />
+      <Header products={products} />
       {loading ? (
         <div className='flex-1 h-100 flex justify-center items-center'>
           <Stack spacing={2} direction='row' alignItems='center'>
@@ -22,7 +38,7 @@ export default function App() {
           </Stack>
         </div>
       ) : (
-        <Outlet context={{ product }} />
+        <Outlet context={{ products, updateQuantity }} />
       )}
       <Footer container className='bg-gray-200 rounded-0'>
         <FooterCopyright href='#' by='BRAND™' year={2025} />

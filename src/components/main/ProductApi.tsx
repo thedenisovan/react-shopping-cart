@@ -34,6 +34,8 @@ const useProductData = () => {
       .finally(() => setLoading(false));
   }, []);
 
+  product.forEach((prod) => (prod.quantity = 0));
+
   return { product, error, loading };
 };
 
