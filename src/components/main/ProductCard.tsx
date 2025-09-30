@@ -117,7 +117,11 @@ const ProductCard = ({
               onClick={() => {
                 updateQuantity(product.id, count);
                 setCount(0);
-                handleClick();
+                {
+                  if (count > 0) {
+                    handleClick();
+                  }
+                }
               }}
             >
               Add to Basket
