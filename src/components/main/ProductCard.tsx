@@ -32,7 +32,7 @@ const ProductCard = ({
   return (
     <Card
       // sx={{ maxWidth: 345 }}
-      className='m-auto w-[300px]! h-[515px]! mb-3 md:h-[550px] md:w-[350px]! relative'
+      className='m-auto w-[300px]! h-[515px]! mb-3 mt-3 md:h-[550px] md:w-[350px]! relative'
     >
       <CardMedia
         component='img'
@@ -89,6 +89,7 @@ const ProductCard = ({
               className='absolute top-12'
               onClick={() => {
                 updateQuantity(product.id, count);
+                setCount(0);
               }}
             >
               Add to Basket
@@ -97,17 +98,19 @@ const ProductCard = ({
         )}
 
         {isBasket && (
-          <Button
-            size='medium'
-            color='warning'
-            variant='contained'
-            className='absolute top-12'
-            onClick={() => {
-              deleteFromBasket(product.id);
-            }}
-          >
-            Delete item
-          </Button>
+          <div>
+            <p>Items in basket {product.quantity}</p>
+            <Button
+              size='medium'
+              color='warning'
+              variant='contained'
+              onClick={() => {
+                deleteFromBasket(product.id);
+              }}
+            >
+              Delete item
+            </Button>
+          </div>
         )}
       </div>
     </Card>
