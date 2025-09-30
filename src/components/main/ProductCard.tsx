@@ -9,6 +9,7 @@ import { useState } from 'react';
 import type { ProductType } from '../main/ProductApi';
 import Snackbar from '@mui/material/Snackbar';
 import type { SnackbarCloseReason } from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 import svg from '../../utils/svgRepo';
 
@@ -56,11 +57,20 @@ const ProductCard = ({
     >
       <Snackbar
         open={open}
-        autoHideDuration={2000}
+        autoHideDuration={3000}
         onClose={handleClose}
-        message='Item added to basket.'
+        message={`Item added to cart.`}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      />
+      >
+        <Alert
+          onClose={handleClose}
+          severity='success'
+          variant='filled'
+          sx={{ width: '100%' }}
+        >
+          Item added to the cart!
+        </Alert>
+      </Snackbar>
       <CardMedia
         component='img'
         alt={product.title}
