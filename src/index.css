@@ -10,4 +10,5 @@ body,
 html,
 #root {
   height: 100%;
+  background-color: #d2d4d8;
 }

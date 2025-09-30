@@ -45,7 +45,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       />
       <div className='flex flex-col justify-center items-center text-center'>
         <CardContent>
-          <Typography gutterBottom variant='h5' component='div'>
+          <Typography
+            gutterBottom
+            variant='h6'
+            className='!text-[1rem]'
+            component='div'
+          >
             {product.title}
           </Typography>
           <Typography variant='body2' sx={{ color: 'text.secondary' }}>
@@ -58,7 +63,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className='absolute bottom-20'>
           <button
             data-testid='decrement-btn'
-            className='w-10 absolute -bottom-2.5 !-left-6'
+            className='w-10 absolute -bottom-2.5 !left-2 hover:scale-[1.05] transition'
             onClick={decrementCount}
           >
             <img src={svg.minusBtn} />
@@ -67,18 +72,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             data-testid='item-count'
             value={count ? count : ''}
             type='tel'
-            className='border-1 w-10 text-center absolute top-3 right-3'
+            className='border-1 w-10 text-center absolute top-3 right-13'
             onChange={(e) => changeCountOnChange(Number(e.target.value))}
           />
           <button
             data-testid='increment-btn'
-            className='w-6.5 absolute -bottom-0.5 !-right-4'
+            className='w-6.5 absolute -bottom-0.5 !right-5 hover:scale-[1.05] transition'
             onClick={addCount}
           >
             <img src={svg.plusBtn} />
           </button>
           <Button size='medium' variant='contained' className='absolute top-12'>
-            Add
+            Add to Basket
           </Button>
         </div>
       </div>
