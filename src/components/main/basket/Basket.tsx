@@ -3,9 +3,10 @@ import { useOutletContext } from 'react-router';
 import type { ProductType } from '../ProductApi';
 
 export default function Basket() {
-  const { products, updateQuantity } = useOutletContext<{
+  const { products, updateQuantity, deleteFromBasket } = useOutletContext<{
     products: ProductType[];
     updateQuantity: (id: number, amount: number) => void;
+    deleteFromBasket: (id: number) => void;
   }>();
   const addedProducts = products.filter((prod) => prod.quantity > 0);
 
@@ -14,6 +15,7 @@ export default function Basket() {
       {addedProducts.map((prod) => (
         <ProductCard
           updateQuantity={updateQuantity}
+          deleteFromBasket={deleteFromBasket}
           product={prod}
           key={prod.id}
           isBasket={true}

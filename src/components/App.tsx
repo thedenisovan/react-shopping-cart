@@ -26,6 +26,12 @@ export default function App() {
     );
   };
 
+  const deleteFromBasket = (id: number) => {
+    setProducts((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, quantity: 0 } : p))
+    );
+  };
+
   if (error) throw new Error('Error durning fetch api');
 
   return (
@@ -38,7 +44,7 @@ export default function App() {
           </Stack>
         </div>
       ) : (
-        <Outlet context={{ products, updateQuantity }} />
+        <Outlet context={{ products, updateQuantity, deleteFromBasket }} />
       )}
       <Footer container className='bg-gray-200 rounded-0'>
         <FooterCopyright href='#' by='BRAND™' year={2025} />

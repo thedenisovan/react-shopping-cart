@@ -20,7 +20,6 @@ interface HeaderProps {
 export default function Header({ products }: HeaderProps) {
   const addedProducts = products.filter((prod) => prod.quantity > 0);
   const sum = addedProducts.reduce((acc, cur) => acc + cur.quantity, 0);
-  console.log(sum);
 
   return (
     <header className='flex items-center justify-between h-[5vh] bg-gray-200'>

@@ -14,10 +14,12 @@ const ProductCard = ({
   product, // current product
   isBasket = false,
   updateQuantity,
+  deleteFromBasket,
 }: {
   product: ProductType;
   isBasket?: boolean;
   updateQuantity: (id: number, amount: number) => void; // adds quantity to product
+  deleteFromBasket: (id: number) => void;
 }) => {
   const [count, setCount] = useState<number>(0);
 
@@ -101,8 +103,7 @@ const ProductCard = ({
             variant='contained'
             className='absolute top-12'
             onClick={() => {
-              product.quantity = 0;
-              console.log(product.quantity);
+              deleteFromBasket(product.id);
             }}
           >
             Delete item
