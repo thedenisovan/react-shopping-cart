@@ -80,7 +80,7 @@ export default function DropDown() {
               currentPage === '/basket' && 'bg-gray-200!' // Sets curr active page style to home page
             }`}
           >
-            <p className='text-black'>Basket</p>
+            <p className='text-black'>Cart</p>
           </MenuItem>
         </Link>
       </Menu>

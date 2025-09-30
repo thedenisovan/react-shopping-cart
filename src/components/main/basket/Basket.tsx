@@ -11,11 +11,11 @@ export default function Basket() {
   }>();
   const addedProducts = products.filter((prod) => prod.quantity > 0);
 
-  const getTotal = (type: string) =>
-    addedProducts.reduce((acc, cur) => acc + cur[type], 0);
-
-  const totalPrice = getTotal('price');
-  const totalItems = getTotal('quantity');
+  const totalPrice = addedProducts.reduce(
+    (acc, cur) => acc + cur.price * cur.quantity,
+    0
+  );
+  const totalItems = addedProducts.reduce((acc, cur) => acc + cur.quantity, 0);
 
   return (
     <div
@@ -44,12 +44,17 @@ export default function Basket() {
         <div>
           <hr className='!border-t-black border-2'></hr>
           <div>Total Items: {totalItems}</div>
-          <div>Item Price: ${totalPrice}</div>
+          <div>Item Price: ${totalPrice.toFixed(2)}</div>
           <div className='flex justify-center'>
             Shipping:
             {totalPrice < 400 ? ` $25` : ' Free shipping'}
           </div>
-          <h3>Total: {totalPrice > 399 ? totalPrice : totalPrice + 25}</h3>
+          <h3>
+            Total: $
+            {totalPrice > 399
+              ? totalPrice.toFixed(2)
+              : (totalPrice + 25).toFixed(2)}
+          </h3>
         </div>
       )}
     </div>

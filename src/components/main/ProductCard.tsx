@@ -7,6 +7,8 @@ import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import type { ProductType } from '../main/ProductApi';
+import Snackbar from '@mui/material/Snackbar';
+import type { SnackbarCloseReason } from '@mui/material/Snackbar';
 
 import svg from '../../utils/svgRepo';
 
@@ -22,6 +24,24 @@ const ProductCard = ({
   deleteFromBasket: (id: number) => void;
 }) => {
   const [count, setCount] = useState<number>(0);
+  const [open, setOpen] = useState(false);
+
+  // open snack bar
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  // close snack bar
+  const handleClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: SnackbarCloseReason
+  ) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const addCount = () => setCount(count + 1);
   const decrementCount = () =>
@@ -34,6 +54,13 @@ const ProductCard = ({
       // sx={{ maxWidth: 345 }}
       className='m-auto w-[300px]! h-[515px]! mb-3 mt-3 md:h-[550px] md:w-[350px]! relative'
     >
+      <Snackbar
+        open={open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+        message='Item added to basket.'
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      />
       <CardMedia
         component='img'
         alt={product.title}
@@ -90,6 +117,7 @@ const ProductCard = ({
               onClick={() => {
                 updateQuantity(product.id, count);
                 setCount(0);
+                handleClick();
               }}
             >
               Add to Basket
