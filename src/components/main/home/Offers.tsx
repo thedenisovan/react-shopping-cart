@@ -1,24 +1,11 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ProductCard from '../ProductCard';
-import useProductData from '../ProductApi';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useState, useEffect } from 'react';
-
-// Interface to store fake shop call data
-interface ProductType {
-  category: string;
-  description: string;
-  id: number;
-  image: string;
-  price: number;
-  rating: {
-    rate: number;
-    count: number;
-  };
-  title: string;
-}
+import type { ProductType } from '../ProductApi';
+import { useOutletContext } from 'react-router';
 
 // responsive breakpoint settings for react multi carousel
 const responsive = {
@@ -26,13 +13,9 @@ const responsive = {
     breakpoint: { max: 4000, min: 2200 },
     items: 4,
   },
-  veryLargeDesktop: {
-    breakpoint: { max: 2200, min: 1700 },
-    items: 3,
-  },
   desktop: {
-    breakpoint: { max: 1700, min: 1077 },
-    items: 2,
+    breakpoint: { max: 2200, min: 1077 },
+    items: 3,
   },
   tablet: {
     breakpoint: { max: 1077, min: 613 },
@@ -45,7 +28,12 @@ const responsive = {
 };
 
 export default function Offers({ type }: { type: string }) {
-  const { loading, error } = useProductData();
+  const { loading, error } = useOutletContext<{
+    product: ProductType[];
+    loading: boolean;
+    error: string;
+  }>();
+
   const [currProduct, setCurrProduct] = useState<ProductType[]>([]);
   const {
     manProducts,
@@ -106,12 +94,16 @@ export default function Offers({ type }: { type: string }) {
 
 // Hook to return products based on their category
 const useProductCategory = () => {
-  const { product } = useProductData();
   const [manProducts, setManProducts] = useState<ProductType[]>([]);
   const [womanProducts, setWomanProducts] = useState<ProductType[]>([]);
   const [jewelry, setJewelry] = useState<ProductType[]>([]);
   const [electronicProducts, setElectronic] = useState<ProductType[]>([]);
   const [specOffers, setSpecOffers] = useState<ProductType[]>([]);
+  const { product } = useOutletContext<{
+    product: ProductType[];
+    loading: boolean;
+    error: string;
+  }>();
 
   // sets different product based on category
   // when products gets fetched from api

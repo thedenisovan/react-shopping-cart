@@ -6,20 +6,12 @@ import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
+import type { ProductType } from '../main/ProductApi';
 
 import svg from '../../utils/svgRepo';
 
-interface Product {
-  title: string;
-  image: string;
-  price: number;
-  rating: {
-    rate: number;
-  };
-}
-
 interface ProductCardProps {
-  product: Product;
+  product: ProductType;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
@@ -62,6 +54,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <CardActions></CardActions>
         <div className='absolute bottom-20'>
           <button
+            aria-label='delete one item from basket'
             data-testid='decrement-btn'
             className='w-10 absolute -bottom-2.5 !left-2 hover:scale-[1.05] transition'
             onClick={decrementCount}
@@ -69,6 +62,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <img src={svg.minusBtn} />
           </button>
           <input
+            aria-label='item count in basket'
             data-testid='item-count'
             value={count ? count : ''}
             type='tel'
@@ -76,6 +70,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             onChange={(e) => changeCountOnChange(Number(e.target.value))}
           />
           <button
+            aria-label='add one item to basket'
             data-testid='increment-btn'
             className='w-6.5 absolute -bottom-0.5 !right-5 hover:scale-[1.05] transition'
             onClick={addCount}

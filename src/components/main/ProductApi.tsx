@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react';
 
+// Interface to store fake shop call data
+export interface ProductType {
+  category: string;
+  description: string;
+  id: number;
+  image: string;
+  price: number;
+  rating: {
+    rate: number;
+    count: number;
+  };
+  title: string;
+}
+
 // Custom hook to fetch data from fake shop api
 const useProductData = () => {
-  // Interface to store fake shop call data
-  interface ProductType {
-    category: string;
-    description: string;
-    id: number;
-    image: string;
-    price: number;
-    rating: {
-      rate: number;
-      count: number;
-    };
-    title: string;
-  }
-
   const [product, setProduct] = useState<ProductType[]>([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);

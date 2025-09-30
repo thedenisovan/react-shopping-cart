@@ -2,7 +2,7 @@ import Offers from '../home/Offers';
 
 export default function ShopPage() {
   return (
-    <div className='flex flex-col !flex-1 text-center'>
+    <div className='flex flex-col !flex-1 text-center bg-gray-100'>
       <div className='bg-gray-100'>
         <h2 className='mb-0'>Start shopping here</h2>
         <h6>Chose from list of our unique products</h6>

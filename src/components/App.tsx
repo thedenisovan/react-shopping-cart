@@ -1,12 +1,15 @@
 import Header from './header/Header';
 import { Outlet } from 'react-router';
 import { Footer, FooterCopyright, FooterLinkGroup } from 'flowbite-react';
+import useProductData from './main/ProductApi';
 
 export default function App() {
+  const { product, loading, error } = useProductData();
+
   return (
     <div className='flex flex-col min-h-screen'>
       <Header />
-      <Outlet />
+      <Outlet context={{ product, loading, error }} />
       <Footer container className='bg-gray-200 rounded-0'>
         <FooterCopyright href='#' by='BRAND™' year={2025} />
         <FooterLinkGroup>

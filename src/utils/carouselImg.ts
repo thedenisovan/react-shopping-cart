@@ -1,9 +1,9 @@
-import imageOne from '../assets/carouselImg/img1.jpg';
-import imageTwo from '../assets/carouselImg/img2.jpg';
-import imageThree from '../assets/carouselImg/img3.jpg';
-import imageOneSmall from '../assets/carouselImg/imgOneSmall.jpg';
-import imageTwoSmall from '../assets/carouselImg/imgTwoSmall.jpg';
-import imageThreeSmall from '../assets/carouselImg/imgThreeSmall.jpg';
+import imageOne from '../assets/carouselImg/img1.webp';
+import imageTwo from '../assets/carouselImg/img2.webp';
+import imageThree from '../assets/carouselImg/img3.webp';
+import imageOneSmall from '../assets/carouselImg/imgOneSmall.webp';
+import imageTwoSmall from '../assets/carouselImg/imgTwoSmall.webp';
+import imageThreeSmall from '../assets/carouselImg/imgThreeSmall.webp';
 
 const carousel = {
   imageOne,
