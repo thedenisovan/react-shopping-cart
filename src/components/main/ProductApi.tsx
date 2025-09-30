@@ -12,6 +12,7 @@ export interface ProductType {
     count: number;
   };
   title: string;
+  quantity: number;
 }
 
 // Custom hook to fetch data from fake shop api

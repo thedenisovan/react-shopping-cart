@@ -1,8 +1,6 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ProductCard from '../ProductCard';
-import Stack from '@mui/material/Stack';
-import CircularProgress from '@mui/material/CircularProgress';
 import { useState, useEffect } from 'react';
 import type { ProductType } from '../ProductApi';
 import { useOutletContext } from 'react-router';
@@ -28,12 +26,6 @@ const responsive = {
 };
 
 export default function Offers({ type }: { type: string }) {
-  const { loading, error } = useOutletContext<{
-    product: ProductType[];
-    loading: boolean;
-    error: string;
-  }>();
-
   const [currProduct, setCurrProduct] = useState<ProductType[]>([]);
   const {
     manProducts,
@@ -42,8 +34,6 @@ export default function Offers({ type }: { type: string }) {
     jewelry,
     specOffers,
   } = useProductCategory();
-
-  if (error) throw new Error('Error durning fetch api');
 
   // sets current product state conditionally based on component prop value
   useEffect(() => {
@@ -75,19 +65,11 @@ export default function Offers({ type }: { type: string }) {
 
   return (
     <div className='bg-gray-100 flex-1'>
-      {loading ? (
-        <div className='h-100 flex justify-center items-center'>
-          <Stack spacing={2} direction='row' alignItems='center'>
-            <CircularProgress size='10rem' color='inherit' />
-          </Stack>
-        </div>
-      ) : (
-        <Carousel responsive={responsive} infinite={true}>
-          {currProduct.map((prod) => (
-            <ProductCard key={prod.id} product={prod} />
-          ))}
-        </Carousel>
-      )}
+      <Carousel responsive={responsive} infinite={true}>
+        {currProduct.map((prod) => (
+          <ProductCard key={prod.id} product={prod} />
+        ))}
+      </Carousel>
     </div>
   );
 }
@@ -101,8 +83,6 @@ const useProductCategory = () => {
   const [specOffers, setSpecOffers] = useState<ProductType[]>([]);
   const { product } = useOutletContext<{
     product: ProductType[];
-    loading: boolean;
-    error: string;
   }>();
 
   // sets different product based on category

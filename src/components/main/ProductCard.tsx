@@ -10,11 +10,7 @@ import type { ProductType } from '../main/ProductApi';
 
 import svg from '../../utils/svgRepo';
 
-interface ProductCardProps {
-  product: ProductType;
-}
-
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard = ({ product }: { product: ProductType }) => {
   const [count, setCount] = useState<number>(0);
 
   const addCount = () => setCount(count + 1);
@@ -64,7 +60,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <input
             aria-label='item count in basket'
             data-testid='item-count'
-            value={count ? count : ''}
+            value={count ? count : 0}
             type='tel'
             className='border-1 w-10 text-center absolute top-3 right-13'
             onChange={(e) => changeCountOnChange(Number(e.target.value))}
@@ -77,7 +73,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           >
             <img src={svg.plusBtn} />
           </button>
-          <Button size='medium' variant='contained' className='absolute top-12'>
+          <Button
+            size='medium'
+            variant='contained'
+            className='absolute top-12'
+            onClick={() => {
+              product.quantity += count;
+              console.log(product.quantity);
+            }}
+          >
             Add to Basket
           </Button>
         </div>
