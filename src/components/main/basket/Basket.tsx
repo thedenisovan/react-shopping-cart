@@ -2,6 +2,7 @@ import ProductCard from '../ProductCard';
 import { useOutletContext } from 'react-router';
 import type { ProductType } from '../ProductApi';
 import { Link } from 'react-router';
+import Button from '@mui/material/Button';
 
 export default function Basket() {
   const { products, updateQuantity, deleteFromBasket } = useOutletContext<{
@@ -30,16 +31,19 @@ export default function Basket() {
         </div>
       )}
 
-      {addedProducts.length !== 0 &&
-        addedProducts.map((prod) => (
-          <ProductCard
-            updateQuantity={updateQuantity}
-            deleteFromBasket={deleteFromBasket}
-            product={prod}
-            key={prod.id}
-            isBasket={true}
-          />
-        ))}
+      {addedProducts.length !== 0 && (
+        <div className='md:grid md:grid-cols-2 lg:grid-cols-2'>
+          {addedProducts.map((prod) => (
+            <ProductCard
+              updateQuantity={updateQuantity}
+              deleteFromBasket={deleteFromBasket}
+              product={prod}
+              key={prod.id}
+              isBasket={true}
+            />
+          ))}
+        </div>
+      )}
       {addedProducts.length !== 0 && (
         <div>
           <hr className='!border-t-black border-2'></hr>
@@ -55,6 +59,14 @@ export default function Basket() {
               ? totalPrice.toFixed(2)
               : (totalPrice + 25).toFixed(2)}
           </h3>
+          <Button
+            size='medium'
+            variant='contained'
+            className='mb-3'
+            color='success'
+          >
+            Checkout
+          </Button>
         </div>
       )}
     </div>
