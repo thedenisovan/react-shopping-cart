@@ -13,11 +13,7 @@ const CartBadge = styled(Badge)`
   }
 `;
 
-interface HeaderProps {
-  products: ProductType[];
-}
-
-export default function Header({ products }: HeaderProps) {
+export default function Header({ products }: { products: ProductType[] }) {
   const addedProducts = products.filter((prod) => prod.quantity > 0);
   const sum = addedProducts.reduce((acc, cur) => acc + cur.quantity, 0);
 

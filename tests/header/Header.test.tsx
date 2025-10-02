@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom/vitest';
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 
 import type { ProductType } from '../../src/components/main/ProductApi';
 import Header from '../../src/components/header/Header';
@@ -23,8 +24,22 @@ describe('header button components should be in document', () => {
     },
   ];
 
+  it('header component should be in document', () => {
+    render(
+      <MemoryRouter>
+        <Header products={mockProduct} />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByRole('heading')).toBeInTheDocument();
+  });
+
   it('basket button should be in document', () => {
-    render(<Header products={mockProduct} />);
+    render(
+      <MemoryRouter>
+        <Header products={mockProduct} />
+      </MemoryRouter>
+    );
 
     expect(screen.getByTestId('basket-button')).toBeInTheDocument();
   });
