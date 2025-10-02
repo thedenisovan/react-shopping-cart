@@ -20,8 +20,8 @@ export default function Basket() {
 
   return (
     <div
-      className={`flex-1 text-center flex flex-col ${
-        addedProducts.length ? 'justify-between' : 'justify-center'
+      className={`flex-1 text-center flex lg:justify-center flex-col lg:flex-row ${
+        totalItems > 0 ? '' : 'items-center'
       }`}
     >
       {!addedProducts.length && (
@@ -32,7 +32,7 @@ export default function Basket() {
       )}
 
       {addedProducts.length !== 0 && (
-        <div className='md:grid md:grid-cols-2 lg:grid-cols-2'>
+        <div>
           {addedProducts.map((prod) => (
             <ProductCard
               updateQuantity={updateQuantity}
@@ -45,8 +45,7 @@ export default function Basket() {
         </div>
       )}
       {addedProducts.length !== 0 && (
-        <div>
-          <hr className='!border-t-black border-2'></hr>
+        <div className='shadow-xl bg-white rounded-[2%] lg:w-[250px] lg:h-[400px] lg:ml-10 mt-3 lg:flex flex-col justify-end'>
           <div>Total Items: {totalItems}</div>
           <div>Item Price: ${totalPrice.toFixed(2)}</div>
           <div className='flex justify-center'>
@@ -62,7 +61,7 @@ export default function Basket() {
           <Button
             size='medium'
             variant='contained'
-            className='mb-3'
+            className='mb-3 w-30 m-auto mt-0'
             color='success'
           >
             Checkout

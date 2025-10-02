@@ -21,8 +21,8 @@ const ProductCard = ({
 }: {
   product: ProductType;
   isBasket?: boolean;
-  updateQuantity: (id: number, amount: number) => void; // adds quantity to product
-  deleteFromBasket: (id: number) => void;
+  updateQuantity?: (id: number, amount: number) => void; // adds quantity to product
+  deleteFromBasket?: (id: number) => void;
 }) => {
   const [count, setCount] = useState<number>(0);
   const [open, setOpen] = useState(false);
@@ -34,7 +34,7 @@ const ProductCard = ({
 
   // close snack bar
   const handleClose = (
-    event: React.SyntheticEvent | Event,
+    _event?: React.SyntheticEvent | Event,
     reason?: SnackbarCloseReason
   ) => {
     if (reason === 'clickaway') {
@@ -53,7 +53,11 @@ const ProductCard = ({
   return (
     <Card
       // sx={{ maxWidth: 345 }}
-      className='m-auto w-[300px]! h-[515px]! mb-3 mt-3 md:h-[550px] md:w-[350px]! relative'
+      className={`m-auto mb-3 mt-3 md:h-[500px] relative ${
+        isBasket
+          ? 'lg:w-[900px] lg:!h-[450px] md:w-[600px] md:h-[460px]!'
+          : 'w-[300px] md:w-[350px] h-[515px]'
+      }`}
     >
       <Snackbar
         open={open}
@@ -125,7 +129,7 @@ const ProductCard = ({
               variant='contained'
               className='absolute top-12'
               onClick={() => {
-                updateQuantity(product.id, count);
+                updateQuantity?.(product.id, count);
                 setCount(0);
                 {
                   if (count > 0) {
@@ -147,7 +151,7 @@ const ProductCard = ({
               color='warning'
               variant='contained'
               onClick={() => {
-                deleteFromBasket(product.id);
+                deleteFromBasket?.(product.id);
               }}
             >
               Delete item
