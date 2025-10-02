@@ -20,6 +20,7 @@ export default function DropDown() {
     setAnchorEl(null);
   };
 
+  // Adds style indicator of curr active page
   const changeCurrentActivePage = (activePage: string) => {
     setCurrentPage(activePage);
   };
