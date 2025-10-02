@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/vitest';
 import { vi, describe, it, expect } from 'vitest';
-import { render, fireEvent, useEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import ProductCard from '../../src/components/main/ProductCard.tsx';
 import type { ProductType } from '../../src/components/main/ProductApi.tsx';
 
@@ -67,20 +67,49 @@ describe('product card buttons', () => {
     expect(input.value).toBe('2');
   });
 
-  it('when product is added to cart its quantity should be updated', async () => {
+  it('add to cart button should be clickable', async () => {
     const onClick = vi.fn();
     const { getByRole } = render(
-      <ProductCard
-        product={mockProduct}
-        updateQuantity={onClick}
-        isBasket={false}
-      />
+      <ProductCard product={mockProduct} updateQuantity={onClick} />
     );
 
     const addBtn = getByRole('button', { name: 'Add to Basket' });
 
-    await useEvent.click(addBtn);
+    await fireEvent.click(addBtn);
 
     expect(onClick).toHaveBeenCalledWith(mockProduct.id, 0);
+  });
+
+  it('add to cart button should update item quantity', async () => {
+    const onClick = vi.fn();
+    const { getByRole, getByTestId } = render(
+      <ProductCard product={mockProduct} updateQuantity={onClick} />
+    );
+
+    const incrementBtn = getByTestId('increment-btn');
+    const addBtn = getByRole('button', { name: 'Add to Basket' });
+
+    await fireEvent.click(incrementBtn); // increment first
+    await fireEvent.click(addBtn);
+
+    expect(onClick).toHaveBeenCalledWith(mockProduct.id, 1);
+  });
+
+  it('delete from cart button should call delete function', async () => {
+    const onClick = vi.fn();
+    const { getByRole } = render(
+      <ProductCard
+        product={mockProduct}
+        deleteFromBasket={onClick}
+        isBasket={true}
+      />
+    );
+
+    const delBtn = getByRole('button', { name: 'Delete item' });
+
+    expect(delBtn).toBeInTheDocument();
+    await fireEvent.click(delBtn);
+
+    expect(onClick).toHaveBeenCalledWith(mockProduct.id);
   });
 });
