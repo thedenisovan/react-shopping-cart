@@ -4,7 +4,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge, { badgeClasses } from '@mui/material/Badge';
 import DropDown from './DropDown';
 import { Link } from 'react-router';
-import type { ProductType } from '../main/ProductApi';
+import { useContext } from 'react';
+import ProductContext from '../App';
 
 const CartBadge = styled(Badge)`
   & .${badgeClasses.badge} {
@@ -13,7 +14,8 @@ const CartBadge = styled(Badge)`
   }
 `;
 
-export default function Header({ products }: { products: ProductType[] }) {
+export default function Header() {
+  const { products } = useContext(ProductContext);
   const addedProducts = products.filter((prod) => prod.quantity > 0);
   const sum = addedProducts.reduce((acc, cur) => acc + cur.quantity, 0);
 

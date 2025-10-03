@@ -4,10 +4,18 @@ import { Footer, FooterCopyright, FooterLinkGroup } from 'flowbite-react';
 import useProductData from './main/ProductApi';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import type { ProductType } from './main/ProductApi';
 
-export default function App() {
+interface CurrentProductContext {
+  products: ProductType[];
+}
+
+const ProductContext = createContext<CurrentProductContext>({
+  products: [],
+});
+
+export function App() {
   const { product, loading, error } = useProductData();
   const [products, setProducts] = useState<ProductType[]>([]);
 
@@ -34,7 +42,9 @@ export default function App() {
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <Header products={products} />
+      <ProductContext value={{ products }}>
+        <Header />
+      </ProductContext>
       {loading ? (
         <div className='flex-1 h-100 flex justify-center items-center'>
           <Stack spacing={2} direction='row' alignItems='center'>
@@ -75,3 +85,5 @@ export default function App() {
     </div>
   );
 }
+
+export default ProductContext;
